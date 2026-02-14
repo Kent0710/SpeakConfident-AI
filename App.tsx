@@ -52,7 +52,7 @@ const App: React.FC = () => {
 
             {appState === AppState.UPLOADING && (
             <div className="flex flex-col items-center justify-center min-h-[80vh]">
-                 <div className="flex items-center gap-2 mb-8 cursor-pointer text-gray-500 hover:text-gray-800 transition-colors" onClick={handleReset}>
+                 <div className="flex items-center gap-2 mb-8 cursor-pointer text-gray-500 hover:text-gray-800 transition-colors mt-[6rem]" onClick={handleReset}>
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
                     Back
                  </div>
