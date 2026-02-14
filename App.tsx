@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import { Header } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { FileUpload } from "./components/FileUpload";
@@ -141,6 +142,7 @@ const App: React.FC = () => {
                 &copy; {new Date().getFullYear()} SpeakConfident AI. All rights
                 reserved.
             </footer>
+            <Analytics />
         </div>
     );
 };
