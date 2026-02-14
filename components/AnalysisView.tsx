@@ -39,11 +39,11 @@ export const AnalysisView: React.FC<AnalysisViewProps> = ({
     }));
 
     return (
-        <div className="w-full max-w-6xl mx-auto p-4 md:p-8 space-y-8 animate-fade-in">
+        <div className="w-full max-w-6xl mx-auto p-4 md:p-8 space-y-8 animate-fade-in ">
             {/* Header Section */}
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold text-gray-900">
+                    <h1 className="text-xl font-bold text-gray-900">
                         Analysis Report
                     </h1>
                     <p className="text-gray-500 mt-1">
@@ -52,7 +52,11 @@ export const AnalysisView: React.FC<AnalysisViewProps> = ({
                 </div>
                 <button
                     onClick={onReset}
-                    className="px-6 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors font-medium text-sm"
+                    className="
+                            bg-gradient-to-r from-fuchsia-600 to-pink-600
+                            px-8 py-2 rounded-full text-white font-semibold 
+                            flex items-center gap-2 place-self-center md:place-self-start 
+                        "
                 >
                     Analyze Another
                 </button>
@@ -128,7 +132,7 @@ export const AnalysisView: React.FC<AnalysisViewProps> = ({
                         <h3 className="text-2xl font-bold">
                             Visual Presence Analysis
                         </h3>
-                        <p className="text-indigo-200 mb-8 max-w-3xl text-lg leading-relaxed">
+                        <p className="text-indigo-200 mb-8 max-w-3xl ">
                             {result.visualAnalysis.generalFeedback}
                         </p>
 
@@ -262,16 +266,6 @@ export const AnalysisView: React.FC<AnalysisViewProps> = ({
                                 </li>
                             ))}
                         </ul>
-                    </div>
-
-                    {/* Transcription Snippet */}
-                    <div className="bg-indigo-50 rounded-2xl p-6 border border-indigo-100">
-                        <h3 className="text-indigo-900 font-bold text-lg mb-2">
-                            Transcription Snippet
-                        </h3>
-                        <p className="text-indigo-800 text-sm italic border-l-4 border-indigo-300 pl-4 py-2 bg-white/50 rounded-r-lg">
-                            "{result.transcriptionSnippet}..."
-                        </p>
                     </div>
                 </div>
             </div>

@@ -60,7 +60,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onFileSelect }) => {
     };
 
     return (
-        <div className="w-full max-w-xl mx-auto mt-10 p-6 animate-fade-in">
+        <div className="w-full max-w-xl mx-auto p-6 animate-fade-in">
             <div
                 className={`relative border-2 border-dashed rounded-3xl p-12 text-center transition-all duration-300 cursor-pointer
           ${

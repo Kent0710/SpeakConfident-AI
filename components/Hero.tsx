@@ -6,7 +6,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onStart }) => {
     return (
-        <div className="flex flex-col mt-[6rem]">
+        <div className="flex flex-col mt-[2rem]">
             {/* hero section */}
             <div className="flex md:flex-row flex-wrap items-center min-h-[70dvh] mt-[7rem] md:mt-[0rem] px-4">
                 {/* left section  */}
