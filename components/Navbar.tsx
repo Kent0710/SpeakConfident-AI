@@ -19,9 +19,9 @@ export const Header: React.FC = () => {
     );
 
     return (
-        <header className="flex justify-between px-2 md:px-16 py-4 items-center">
+        <header className="flex justify-between px-2 md:px-16 py-4 border-b items-center fixed w-full bg-white z-50 ">
             <a href="/">
-                <h1 className="font-semibold text-xl">SpeakConfident AI</h1>
+                <h1 className="font-semibold text-base md:text-xl">SpeakConfident AI</h1>
             </a>
             <nav className="flex items-center gap-2">
                 {navs.map((nav) => (

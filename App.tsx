@@ -44,13 +44,7 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-slate-50 text-neutral-800 flex flex-col text-sm">
       <Header />
       
-      <main className="flex-grow flex flex-col relative overflow-hidden">
-        {/* Decorative Background Elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-            <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-indigo-200/30 rounded-full blur-3xl"></div>
-            <div className="absolute top-[20%] -right-[5%] w-[30%] h-[30%] bg-purple-200/30 rounded-full blur-3xl"></div>
-        </div>
-
+      <main className="flex-grow flex flex-col relative overflow-hidden pb-20">
         <div className="relative z-10 w-full">
             {appState === AppState.IDLE && (
             <Hero onStart={handleStart} />
@@ -111,11 +105,8 @@ const App: React.FC = () => {
             )}
         </div>
       </main>
-      
-      <footer className="bg-white border-t border-gray-100 py-8 mt-auto relative z-10">
-        <div className="max-w-6xl mx-auto px-4 text-center text-gray-400 text-sm">
-            <p>&copy; {new Date().getFullYear()} SpeakConfident AI. We help students sound confident before it matters.</p>
-        </div>
+      <footer className="bg-neutral-100 text-center py-4 text-xs text-neutral-500 flex items-center justify-center h-[5rem]">
+        &copy; {new Date().getFullYear()} SpeakConfident AI. All rights reserved.
       </footer>
     </div>
   );

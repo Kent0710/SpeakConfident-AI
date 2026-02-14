@@ -1,58 +1,212 @@
-import React from 'react';
+import React from "react";
 
 interface HeroProps {
-  onStart: () => void;
+    onStart: () => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({ onStart }) => {
-  return (
-    <div className="flex flex-col items-center justify-center min-h-[80vh] text-center px-4 animate-fade-in-up">
-      <div className="inline-block px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-indigo-600 uppercase bg-indigo-50 rounded-full border border-indigo-100">
-        AI-Powered Public Speaking Coach
-      </div>
-      <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-gray-900 mb-6 max-w-4xl">
-        Sound confident <br className="hidden md:block" />
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
-           before it matters.
-        </span>
-      </h1>
-      <p className="text-lg md:text-xl text-gray-500 mb-10 max-w-2xl leading-relaxed">
-        Upload your practice presentation audio or video. Get instant, actionable feedback on pacing, tone, and filler words from our advanced AI.
-      </p>
-      
-      <button 
-        onClick={onStart}
-        className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-indigo-600 font-pj rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 hover:bg-indigo-700 shadow-lg hover:shadow-indigo-500/30 hover:-translate-y-1"
-      >
-        Start Analysis
-        <svg className="w-5 h-5 ml-2 transition-transform duration-200 group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-        </svg>
-      </button>
+    return (
+        <div className="flex flex-col mt-[6rem]">
+            {/* hero section */}
+            <div className="flex md:flex-row flex-wrap items-center min-h-[70dvh] mt-[7rem] md:mt-[0rem] px-4">
+                {/* left section  */}
+               <section className="w-full md:w-1/2 flex flex-col pl-0 md:pl-16 mb-12 md:mb-0">
+                    <h1
+                        className="text-5xl md:text-7xl font-extrabold tracking-tight 
+                    bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent mb-6 max-w-4xl text-center md:text-left"
+                    >
+                        Sound confident <br className="hidden md:block" />
+                        <span className="bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent">
+                            before it matters.
+                        </span>
+                    </h1>
+                    <p className="text-base text-neutral-500 mb-10 max-w-xl text-center md:text-left">
+                        Upload your practice presentation audio or video. Get
+                        instant, actionable feedback on pacing, tone, and filler
+                        words from our advanced AI.
+                    </p>
 
-      <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-left max-w-4xl w-full">
-         <div className="p-4 rounded-xl bg-white border border-gray-100 shadow-sm">
-            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
-                <span className="text-xl">⏱️</span>
+                    <button
+                        onClick={onStart}
+                        className="
+                            bg-gradient-to-r from-fuchsia-600 to-pink-600
+                            px-8 py-4 rounded-full text-white font-semibold 
+                            flex items-center gap-2 place-self-center md:place-self-start 
+                        "
+                    >
+                        Start Analysis
+                    </button>
+                </section>
+
+                {/* right section  */}
+                <section className="w-full md:w-1/2 flex flex-col items-center justify-center">
+                    <img
+                        src="/sample-analysis.png"
+                        alt="Sample Analysis Screenshot"
+                        className="w-full max-w-2xl rounded-lg shadow-lg object-cover rotate-3"
+                    />
+                    <p className="mt-8 font-medium text-neutral-500 rotate-3">
+                        {" "}
+                        Sample Overall Analysis
+                    </p>
+                </section>
             </div>
-            <h3 className="font-bold text-gray-900">Pacing Analysis</h3>
-            <p className="text-sm text-gray-500 mt-1">Are you speaking too fast or too slow? We'll tell you the sweet spot.</p>
-         </div>
-         <div className="p-4 rounded-xl bg-white border border-gray-100 shadow-sm">
-            <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
-                <span className="text-xl">🗣️</span>
+
+            <AnalysisMarquee />
+
+            {/* sample video analysis section  */}
+            <div className="flex flex-col items-center justify-center mt-[10rem] px-4">
+                {/* public\video-sample-analysis.png */}
+                <p
+                    className="
+                    text-4xl font-bold text-center
+                    bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent mb-2
+                "
+                >
+                    Not limited to audio.
+                </p>
+                <p className="text-base text-neutral-500 mb-10 max-w-xl text-center">
+                    Upload a video and receive feedback on your full
+                    presentation.
+                </p>
+                <img
+                    src="/video-sample-analysis.png"
+                    alt="Sample Video Analysis"
+                    className="w-full max-w-4xl rounded-lg shadow-lg object-cover"
+                />
+                <p className="mt-8 font-medium text-neutral-500">
+                    {" "}
+                    Sample Visual Analysis
+                </p>
             </div>
-            <h3 className="font-bold text-gray-900">Filler Word Detection</h3>
-            <p className="text-sm text-gray-500 mt-1">Catch those "ums", "ahs", and "likes" before your audience does.</p>
-         </div>
-         <div className="p-4 rounded-xl bg-white border border-gray-100 shadow-sm">
-            <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mb-3">
-                <span className="text-xl">🎯</span>
+
+            {/* strength and improvement  */}
+            <div className="flex flex-col items-center mt-[10rem] px-4">
+                <p
+                    className="text-4xl font-extrabold tracking-tight 
+                    bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent mb-2  max-w-4xl text-center"
+                >
+                    See How You Really Present
+                </p>
+                <p className="text-base text-neutral-500 mb-10 max-w-md text-center">
+                    Know your strengths and weaknesses with detailed feedback on
+                    what you did well and where to improve.
+                </p>
+                <img
+                    // public\strength-and-improvement.png
+                    src="/strength-and-improvement.png"
+                    alt="Strength and Improvement Analysis"
+                    className="w-full max-w-xl rounded-lg shadow-lg object-cover"
+                />
             </div>
-            <h3 className="font-bold text-gray-900">Tone & Confidence</h3>
-            <p className="text-sm text-gray-500 mt-1">Ensure your voice projects authority and keeps engagement high.</p>
-         </div>
-      </div>
-    </div>
-  );
+
+            <div className="flex flex-col mt-[10rem] items-center justify-center px-4">
+                <p
+                    className="text-4xl font-extrabold tracking-tight 
+                    bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent mb-2 max-w-4xl text-center"
+                >
+                    Your file recording is ready? 
+                </p>
+                  <p className="text-base text-neutral-500 mb-10 max-w-md text-center">
+                   Upload your practice presentation audio or video now!
+                </p>
+                <button
+                    onClick={onStart}
+                    className="
+                            bg-gradient-to-r from-fuchsia-600 to-pink-600
+                            px-8 py-4 rounded-full text-white font-semibold 
+                            flex items-center gap-2 
+                        "
+                >
+                    Start Analysis
+                </button>
+            </div>
+        </div>
+    );
+};
+
+const AnalysisMarquee = () => {
+    return (
+        <>
+            <div className="mt-16 overflow-x-hidden w-full">
+                <div className="flex gap-6 min-w-max animate-marquee">
+                    {/* Original cards */}
+                    {[
+                        "Confidence",
+                        "Clarity",
+                        "Engagement",
+                        "Content Structure",
+                        "Filler Words",
+                    ].map((title, i) => (
+                        <div
+                            key={i}
+                            className="p-4 rounded-xl bg-white border border-gray-100 shadow-sm flex-shrink-0 w-72"
+                        >
+                            <h3 className="font-bold text-gray-900">
+                                {title} Analysis
+                            </h3>
+                            <p className="text-sm text-gray-500 mt-1">
+                                {title === "Confidence" &&
+                                    "Are you projecting authority? We'll show how confident and credible your delivery comes across."}
+                                {title === "Clarity" &&
+                                    "Is every word clear? Get tips on enunciation and pacing to make sure your audience understands you."}
+                                {title === "Engagement" &&
+                                    "Keeping attention is key. See how dynamic and expressive your delivery is, and how well you hold the audience."}
+                                {title === "Content Structure" &&
+                                    "Is your message easy to follow? We'll highlight the flow of your introduction, main points, and conclusion."}
+                                {title === "Filler Words" &&
+                                    "Do you say “um” or “like” too often? We'll detect filler words and show how to minimize them for a polished delivery."}
+                            </p>
+                        </div>
+                    ))}
+
+                    {/* Duplicate cards for seamless infinite scroll */}
+                    {[
+                        "Confidence",
+                        "Clarity",
+                        "Engagement",
+                        "Content Structure",
+                        "Filler Words",
+                    ].map((title, i) => (
+                        <div
+                            key={i + 5}
+                            className="p-4 rounded-xl bg-white border border-gray-100 shadow-sm flex-shrink-0 w-72"
+                        >
+                            <h3 className="font-bold text-gray-900">
+                                {title} Analysis
+                            </h3>
+                            <p className="text-sm text-gray-500 mt-1">
+                                {title === "Confidence" &&
+                                    "Are you projecting authority? We'll show how confident and credible your delivery comes across."}
+                                {title === "Clarity" &&
+                                    "Is every word clear? Get tips on enunciation and pacing to make sure your audience understands you."}
+                                {title === "Engagement" &&
+                                    "Keeping attention is key. See how dynamic and expressive your delivery is, and how well you hold the audience."}
+                                {title === "Content Structure" &&
+                                    "Is your message easy to follow? We'll highlight the flow of your introduction, main points, and conclusion."}
+                                {title === "Filler Words" &&
+                                    "Do you say “um” or “like” too often? We'll detect filler words and show how to minimize them for a polished delivery."}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <style>{`
+                @keyframes marquee {
+                    0% {
+                        transform: translateX(0);
+                    }
+                    100% {
+                        transform: translateX(-50%);
+                    }
+                }
+
+                .animate-marquee {
+                    display: flex;
+                    animation: marquee 30s linear infinite;
+                }
+            `}</style>
+        </>
+    );
 };
