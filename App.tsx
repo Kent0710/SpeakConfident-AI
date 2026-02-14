@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navbar } from './components/Navbar';
+import { Header } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { FileUpload } from './components/FileUpload';
 import { LoadingState } from './components/LoadingState';
@@ -41,8 +41,8 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
-      <Navbar />
+    <div className="min-h-screen bg-slate-50 text-neutral-800 flex flex-col text-sm">
+      <Header />
       
       <main className="flex-grow flex flex-col relative overflow-hidden">
         {/* Decorative Background Elements */}
