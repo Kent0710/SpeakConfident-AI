@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 
 const Header = () => {
     return (
-        <header className="flex items-center justify-between h-[10dvh] px-10 shadow-sm">
+        <header className="flex items-center justify-between h-[10dvh] px-10 shadow-sm shrink-0">
             {/* left section  */}
             <section className="flex items-center gap-12">
                 <Link href={"/"}>
