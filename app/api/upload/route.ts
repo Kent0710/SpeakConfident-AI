@@ -3,12 +3,6 @@ import { analyzePresentation } from "@/services/gemini-analyze-presentation";
 
 export const runtime = "nodejs"; 
 
-export const config = {
-    api: {
-        bodyParser: false,
-    },
-};
-
 export async function POST(req: NextRequest) {
     try {
         const formData = await req.formData();
