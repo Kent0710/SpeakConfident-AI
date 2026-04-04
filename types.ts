@@ -1,5 +1,5 @@
 export interface UploadFileType {
-    name: string;
+    name?: string;
     file: File;
     previewUrl?: string;
     type: "video" | "audio" | string;
