@@ -1,7 +1,8 @@
 export interface UploadFileType {
+    name: string;
     file: File;
-    previewUrl: string;
-    type: "video" | "audio";
+    previewUrl?: string;
+    type: "video" | "audio" | string;
 }
 
 export interface MetricType {
