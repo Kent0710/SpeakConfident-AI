@@ -18,7 +18,7 @@ export type Database = {
         Row: {
           audio_feedback: string | null
           audio_metric_category: string | null
-          audio_score: number | null
+          audio_score: string | null
           id: string
           improvements: string[] | null
           overallScore: number
@@ -29,12 +29,12 @@ export type Database = {
           visual_feedback: string | null
           visual_general_feedback: string | null
           visual_label: string | null
-          visual_score: number | null
+          visual_score: string | null
         }
         Insert: {
           audio_feedback?: string | null
           audio_metric_category?: string | null
-          audio_score?: number | null
+          audio_score?: string | null
           id?: string
           improvements?: string[] | null
           overallScore?: number
@@ -45,12 +45,12 @@ export type Database = {
           visual_feedback?: string | null
           visual_general_feedback?: string | null
           visual_label?: string | null
-          visual_score?: number | null
+          visual_score?: string | null
         }
         Update: {
           audio_feedback?: string | null
           audio_metric_category?: string | null
-          audio_score?: number | null
+          audio_score?: string | null
           id?: string
           improvements?: string[] | null
           overallScore?: number
@@ -61,7 +61,7 @@ export type Database = {
           visual_feedback?: string | null
           visual_general_feedback?: string | null
           visual_label?: string | null
-          visual_score?: number | null
+          visual_score?: string | null
         }
         Relationships: []
       }

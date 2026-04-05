@@ -30,19 +30,21 @@ export default async function getAnalyses() {
         const analyses: AnalysisResultType[] = data.map((row: Tables<"analysis">) => {
             const audioCategories = row.audio_metric_category ? JSON.parse(row.audio_metric_category) : [];
             const audioFeedbacks = row.audio_feedback ? JSON.parse(row.audio_feedback) : [];
+            const audioScores = row.audio_score ? JSON.parse(row.audio_score) : [];
             
             const metrics = audioCategories.map((category: string, index: number) => ({
                 category,
-                score: row.audio_score || 0,
+                score: audioScores[index] !== undefined ? audioScores[index] : 0,
                 feedback: audioFeedbacks[index] || ""
             }));
 
             const visualLabels = row.visual_label ? JSON.parse(row.visual_label) : [];
             const visualFeedbacks = row.visual_feedback ? JSON.parse(row.visual_feedback) : [];
+            const visualScores = row.visual_score ? JSON.parse(row.visual_score) : [];
 
             const visualMetrics = visualLabels.map((label: string, index: number) => ({
                 label,
-                score: row.visual_score || 0,
+                score: visualScores[index] !== undefined ? visualScores[index] : 0,
                 feedback: visualFeedbacks[index] || ""
             }));
 
@@ -54,6 +56,7 @@ export default async function getAnalyses() {
                 : undefined;
 
             const result: AnalysisResultType = {
+                id: row.id,
                 overallScore: row.overallScore || 0,
                 summary: row.summary || "",
                 metrics,
