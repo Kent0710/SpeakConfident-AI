@@ -5,6 +5,7 @@ import PageWrapper from "@/components/reusables/wrappers";
 import { useFileStore } from "@/store/use-current-file";
 import { useAnalysisResultStore } from "@/store/use-analysis-result";
 import { AnalysisResultType, UploadFileType } from "@/types";
+import saveAnalysis from "@/actions/analysis/save-analysis";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
@@ -45,10 +46,12 @@ const UploadPage = () => {
 
             setAnalysisResult(result);
 
-            // TODO: swap the hardcoded ID below once the DB server action is ready
-            // const { id } = await saveAnalysisResult(result);
-            // router.push(`/analysis/${id}`);
-            router.push("/analysis/123");
+            const res = await saveAnalysis(result);
+            if (res.ok) {
+                router.push(`/analysis/${res.id}`);
+            } else {
+                toast.error(res.error);
+            }
         } catch (err: unknown) {
             console.error("[UploadPage] handleFileSelect error:", err);
 
