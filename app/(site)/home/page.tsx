@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import PageWrapper from "@/components/reusables/wrappers";
+import AnalysesDashboard from "@/components/home/analyses-dashboard";
+import { Suspense } from "react";
 
 const HomePage = () => {
     return (
@@ -15,6 +17,10 @@ const HomePage = () => {
             <Link href={`/record`}>
                 <Button>Record</Button>
             </Link>
+
+            <Suspense fallback={<div>Loading analyses...</div>}>
+                <AnalysesDashboard />
+            </Suspense>
         </PageWrapper>
     );
 };
