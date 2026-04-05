@@ -22,7 +22,7 @@ const Header = () => {
                             </Link>
                         </li>
                           <li>
-                            <Link href={`/record`}>
+                            <Link href={`/studio`}>
                                 <Button variant={"ghost"}>Record</Button>
                             </Link>
                         </li>

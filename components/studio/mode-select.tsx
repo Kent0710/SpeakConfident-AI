@@ -1,6 +1,8 @@
-'use client'
+"use client";
 
 import { CaptureMode } from "@/hooks/use-recorder";
+import Link from "next/link";
+import { Button } from "../ui/button";
 
 const MODES = [
     {
@@ -165,9 +167,16 @@ const ModeSelect = ({
             >
                 ⏺ Start Presentation
             </button>
+            <Link
+                href={`/home`}
+                className="text-white w-full flex justify-center"
+            >
+                <Button variant={"ghost"} className="w-fit">
+                    Go back to Home
+                </Button>
+            </Link>
         </div>
     </div>
 );
-
 
 export default ModeSelect;
