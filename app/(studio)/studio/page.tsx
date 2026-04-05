@@ -8,11 +8,7 @@ import React, {
     useCallback,
 } from "react";
 import { Canvas } from "@react-three/fiber";
-import {
-    OrbitControls,
-    Environment,
-    ContactShadows,
-} from "@react-three/drei";
+import { Environment, ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
 import { useRecorder } from "@/hooks/use-recorder";
 import { useFileStore } from "@/store/use-current-file";
@@ -33,11 +29,11 @@ import ModeSelect from "@/components/studio/mode-select";
 // Types
 
 type PagePhase =
-    | "mode-select"  // user picks video/audio + countdown duration
-    | "countdown"    // 3-2-1 countdown (curtains still closed)
-    | "recording"    // live — curtains open, HUD visible
-    | "closing"      // stop pressed — curtains closing, waiting for blob
-    | "preview";     // blob ready — show review UI
+    | "mode-select" // user picks video/audio + countdown duration
+    | "countdown" // 3-2-1 countdown (curtains still closed)
+    | "recording" // live — curtains open, HUD visible
+    | "closing" // stop pressed — curtains closing, waiting for blob
+    | "preview"; // blob ready — show review UI
 
 // z-index map (documented for sanity):
 // canvas        : 0   (default, behind everything)
@@ -75,14 +71,22 @@ const RecordPresentationPage = () => {
     const isSubmittingRef = useRef(false);
 
     const {
-        mode, setMode,
-        previewUrl, recordedBlob,
-        videoRef,             // ← the ref the hook assigns srcObject to
+        mode,
+        setMode,
+        previewUrl,
+        recordedBlob,
+        videoRef, // ← the ref the hook assigns srcObject to
         streamRef,
-        startRecording, stopRecording, reset, error,
+        startRecording,
+        stopRecording,
+        reset,
+        error,
     } = useRecorder();
 
-    const handleSceneReady = useCallback((box: THREE.Box3) => setRowBox(box), []);
+    const handleSceneReady = useCallback(
+        (box: THREE.Box3) => setRowBox(box),
+        [],
+    );
 
     // ── Start: acquire stream first, then countdown (or go straight to recording)
     const handleStart = useCallback(async () => {
@@ -91,7 +95,10 @@ const RecordPresentationPage = () => {
         if (countdownDuration === 0) {
             setCurtainsOpen(true);
             setPhase("recording");
-            elapsedTimerRef.current = setInterval(() => setElapsed((e) => e + 1), 1000);
+            elapsedTimerRef.current = setInterval(
+                () => setElapsed((e) => e + 1),
+                1000,
+            );
         } else {
             setCountdownTick(countdownDuration);
             setPhase("countdown");
@@ -105,7 +112,10 @@ const RecordPresentationPage = () => {
         if (countdownTick <= 0) {
             setCurtainsOpen(true);
             setPhase("recording");
-            elapsedTimerRef.current = setInterval(() => setElapsed((e) => e + 1), 1000);
+            elapsedTimerRef.current = setInterval(
+                () => setElapsed((e) => e + 1),
+                1000,
+            );
             return;
         }
 
@@ -150,18 +160,27 @@ const RecordPresentationPage = () => {
         try {
             const ext = recordedBlob.type.includes("mp4") ? "mp4" : "webm";
             const filename = `recording-${Date.now()}.${ext}`;
-            const file = new File([recordedBlob], filename, { type: recordedBlob.type });
+            const file = new File([recordedBlob], filename, {
+                type: recordedBlob.type,
+            });
 
             setCurrentFile({ file, name: filename, type: recordedBlob.type });
 
             const formData = new FormData();
             formData.append("file", file);
 
-            const response = await fetch("/api/upload", { method: "POST", body: formData });
+            const response = await fetch("/api/upload", {
+                method: "POST",
+                body: formData,
+            });
 
             if (!response.ok) {
-                const { error: serverError } = (await response.json()) as { error: string };
-                throw new Error(serverError ?? `Server error: ${response.status}`);
+                const { error: serverError } = (await response.json()) as {
+                    error: string;
+                };
+                throw new Error(
+                    serverError ?? `Server error: ${response.status}`,
+                );
             }
 
             const result = (await response.json()) as AnalysisResultType;
@@ -169,7 +188,11 @@ const RecordPresentationPage = () => {
             router.push("/analysis/123");
         } catch (err: unknown) {
             console.error("[RecordPage] submit error:", err);
-            toast.error(err instanceof Error ? `Analysis failed: ${err.message}` : "Unknown error.");
+            toast.error(
+                err instanceof Error
+                    ? `Analysis failed: ${err.message}`
+                    : "Unknown error.",
+            );
         } finally {
             isSubmittingRef.current = false;
             setIsSubmitting(false);
@@ -177,55 +200,71 @@ const RecordPresentationPage = () => {
     }, [recordedBlob, setCurrentFile, setAnalysisResult, router]);
 
     // ── Cleanup
-    useEffect(() => () => {
-        if (elapsedTimerRef.current) clearInterval(elapsedTimerRef.current);
-    }, []);
+    useEffect(
+        () => () => {
+            if (elapsedTimerRef.current) clearInterval(elapsedTimerRef.current);
+        },
+        [],
+    );
 
     return (
-        <div style={{
-            width: "100%", height: "100vh", background: "#0a0a0a",
-            display: "flex", flexDirection: "column",
-            alignItems: "center", justifyContent: "center",
-            gap: 12, overflow: "hidden",
-        }}>
-            <p style={{
-                color: "#555", fontSize: 11, letterSpacing: 3,
-                fontFamily: "monospace", textTransform: "uppercase", margin: 0,
-            }}>
+        <div
+            style={{
+                width: "100%",
+                height: "100vh",
+                background: "#0a0a0a",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 12,
+                overflow: "hidden",
+                paddingTop: 20,
+            }}
+        >
+            <p
+                style={{
+                    color: "#555",
+                    fontSize: 11,
+                    letterSpacing: 3,
+                    fontFamily: "monospace",
+                    textTransform: "uppercase",
+                    margin: 0,
+                }}
+            >
                 SpeakConfident AI — Presentation Stage
             </p>
 
             {/* ── Main stage ── */}
-            <div style={{
-                width: "100%", maxWidth: 1200, height: "80vh",
-                position: "relative", borderRadius: 20, overflow: "hidden",
-                border: "1px solid rgba(255,255,255,0.06)",
-                boxShadow: "0 32px 80px rgba(0,0,0,0.8)",
-            }}>
+            <div className="w-full h-full relative">
                 {/* Rod always on top */}
                 <CurtainRod />
 
                 {/* Curtains */}
-                <Curtain side="left"  open={curtainsOpen} />
+                <Curtain side="left" open={curtainsOpen} />
                 <Curtain side="right" open={curtainsOpen} />
 
                 {/* Mode select — above curtains */}
                 {phase === "mode-select" && (
                     <ModeSelect
-                        mode={mode} setMode={setMode}
-                        countdown={countdownDuration} setCountdown={setCountdownDuration}
+                        mode={mode}
+                        setMode={setMode}
+                        countdown={countdownDuration}
+                        setCountdown={setCountdownDuration}
                         onStart={handleStart}
                     />
                 )}
 
                 {/* Countdown — ABOVE curtains so it's visible */}
-                {phase === "countdown" && <CountdownOverlay count={countdownTick} />}
+                {phase === "countdown" && (
+                    <CountdownOverlay count={countdownTick} />
+                )}
 
                 {/* Recording HUD — above the open curtain slivers */}
                 {phase === "recording" && (
                     <RecordingHUD
                         mode={mode}
-                        videoRef={videoRef}   // same ref the hook wrote srcObject to
+                        videoRef={videoRef} // same ref the hook wrote srcObject to
                         streamRef={streamRef}
                         onStop={handleStop}
                         elapsed={elapsed}
@@ -245,12 +284,20 @@ const RecordPresentationPage = () => {
 
                 {/* Error */}
                 {error && (
-                    <div style={{
-                        position: "absolute", bottom: 20, left: "50%",
-                        transform: "translateX(-50%)", zIndex: 90,
-                        background: "#7f1d1d", color: "white",
-                        padding: "10px 20px", borderRadius: 10, fontSize: 13,
-                    }}>
+                    <div
+                        style={{
+                            position: "absolute",
+                            bottom: 20,
+                            left: "50%",
+                            transform: "translateX(-50%)",
+                            zIndex: 90,
+                            background: "#7f1d1d",
+                            color: "white",
+                            padding: "10px 20px",
+                            borderRadius: 10,
+                            fontSize: 13,
+                        }}
+                    >
                         {error}
                     </div>
                 )}
@@ -259,27 +306,42 @@ const RecordPresentationPage = () => {
                 <Canvas
                     camera={{ position: [0, 5, 20], fov: 50 }}
                     shadows
-                    gl={{ antialias: true, outputColorSpace: THREE.SRGBColorSpace }}
+                    gl={{
+                        antialias: true,
+                        outputColorSpace: THREE.SRGBColorSpace,
+                    }}
                 >
                     <ambientLight intensity={0.6} />
-                    <directionalLight position={[5, 10, 5]} intensity={1.5} castShadow shadow-mapSize={[2048, 2048]} />
-                    <pointLight position={[-6, 5, -4]} intensity={0.8} color="#a78bfa" />
-                    <pointLight position={[6, 5, -4]}  intensity={0.8} color="#60a5fa" />
+                    <directionalLight
+                        position={[5, 10, 5]}
+                        intensity={1.5}
+                        castShadow
+                        shadow-mapSize={[2048, 2048]}
+                    />
+                    <pointLight
+                        position={[-6, 5, -4]}
+                        intensity={0.8}
+                        color="#a78bfa"
+                    />
+                    <pointLight
+                        position={[6, 5, -4]}
+                        intensity={0.8}
+                        color="#60a5fa"
+                    />
 
                     <Suspense fallback={<Loader />}>
                         <ChairRows onReady={handleSceneReady} />
                         {rowBox && <CameraRig box={rowBox} />}
-                        <ContactShadows position={[0, -0.01, 0]} opacity={0.5} scale={30} blur={2} />
+                        <ContactShadows
+                            position={[0, -0.01, 0]}
+                            opacity={0.5}
+                            scale={30}
+                            blur={2}
+                        />
                         <Environment preset="lobby" />
                     </Suspense>
-
-                    <OrbitControls makeDefault enablePan={false} minDistance={1} maxDistance={500} maxPolarAngle={Math.PI / 2.1} />
                 </Canvas>
             </div>
-
-            <p style={{ color: "#333", fontSize: 11, fontFamily: "monospace", margin: 0 }}>
-                drag to orbit · scroll to zoom
-            </p>
         </div>
     );
 };
