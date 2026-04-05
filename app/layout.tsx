@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import Header from "@/components/reusables/header";
+import { TooltipProvider } from "@/components/ui/tooltip"
 import { Toaster } from "sonner";
 
 const instrumentSansHeading = Instrument_Sans({
@@ -45,7 +45,9 @@ export default function RootLayout({
         >
             <body className="h-screen flex flex-col">
                 {/* <Header /> */}
-                <div>{children}</div>
+                <div>
+                    <TooltipProvider>{children}</TooltipProvider>
+                </div>
                 <Toaster />
             </body>
         </html>
