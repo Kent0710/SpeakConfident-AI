@@ -44,7 +44,7 @@ export default function RootLayout({
             )}
         >
             <body className="h-screen flex flex-col">
-                <Header />
+                {/* <Header /> */}
                 <main className="flex-1">{children}</main>
                 <Toaster />
             </body>
