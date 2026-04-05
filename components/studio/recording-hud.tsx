@@ -19,6 +19,7 @@ const RecordingHUD = ({ mode, videoRef, streamRef, onStop, elapsed }: RecordingH
     const [pos, setPos] = useState({ x: 20, y: 20 });
     const [size, setSize] = useState({ width: 250, height: 140 }); // ~16:9
     const [interaction, setInteraction] = useState<"drag" | "resize" | null>(null);
+    const hudRef = useRef<HTMLDivElement>(null);
     
     // Using refs to hold latest values for pointer events without re-rendering handlers
     const dragState = useRef({
@@ -28,6 +29,8 @@ const RecordingHUD = ({ mode, videoRef, streamRef, onStop, elapsed }: RecordingH
         initialY: 0,
         initialWidth: 0,
         initialHeight: 0,
+        maxLeft: window.innerWidth,
+        maxBottom: window.innerHeight,
         resizeHandle: ""
     });
 
@@ -46,14 +49,22 @@ const RecordingHUD = ({ mode, videoRef, streamRef, onStop, elapsed }: RecordingH
     const onPointerMove = useCallback((e: PointerEvent) => {
         if (!interaction) return;
 
-        const { startX, startY, initialX, initialY, initialWidth, initialHeight, resizeHandle } = dragState.current;
+        const { startX, startY, initialX, initialY, initialWidth, initialHeight, resizeHandle, maxLeft, maxBottom } = dragState.current;
         const dx = e.clientX - startX;
         const dy = e.clientY - startY;
 
         if (interaction === "drag") {
+            let newX = initialX + dx;
+            let newY = initialY - dy; // y acts as "bottom" so dragging down (positive dy) decreases y
+
+            if (newX < 0) newX = 0;
+            if (newX > maxLeft) newX = maxLeft;
+            if (newY < 0) newY = 0;
+            if (newY > maxBottom) newY = maxBottom;
+
             setPos({
-                x: initialX + dx,
-                y: initialY - dy // y acts as "bottom" so dragging down (positive dy) decreases y
+                x: newX,
+                y: newY
             });
         } else if (interaction === "resize") {
             let newW = initialWidth;
@@ -111,6 +122,16 @@ const RecordingHUD = ({ mode, videoRef, streamRef, onStop, elapsed }: RecordingH
     const startDrag = (e: React.PointerEvent) => {
         e.preventDefault();
         e.stopPropagation();
+
+        let maxLeft = window.innerWidth;
+        let maxBottom = window.innerHeight;
+        if (hudRef.current && hudRef.current.parentElement) {
+            const parentRect = hudRef.current.parentElement.getBoundingClientRect();
+            const hudRect = hudRef.current.getBoundingClientRect();
+            maxLeft = parentRect.width - hudRect.width;
+            maxBottom = parentRect.height - hudRect.height;
+        }
+
         dragState.current = {
             startX: e.clientX,
             startY: e.clientY,
@@ -118,6 +139,8 @@ const RecordingHUD = ({ mode, videoRef, streamRef, onStop, elapsed }: RecordingH
             initialY: pos.y,
             initialWidth: size.width,
             initialHeight: size.height,
+            maxLeft,
+            maxBottom,
             resizeHandle: ""
         };
         setInteraction("drag");
@@ -126,6 +149,15 @@ const RecordingHUD = ({ mode, videoRef, streamRef, onStop, elapsed }: RecordingH
     const startResize = (e: React.PointerEvent, handle: string) => {
         e.preventDefault();
         e.stopPropagation();
+
+        let maxLeft = window.innerWidth;
+        let maxBottom = window.innerHeight;
+        if (hudRef.current && hudRef.current.parentElement) {
+            const parentRect = hudRef.current.parentElement.getBoundingClientRect();
+            maxLeft = parentRect.width;
+            maxBottom = parentRect.height;
+        }
+
         dragState.current = {
             startX: e.clientX,
             startY: e.clientY,
@@ -133,6 +165,8 @@ const RecordingHUD = ({ mode, videoRef, streamRef, onStop, elapsed }: RecordingH
             initialY: pos.y,
             initialWidth: size.width,
             initialHeight: size.height,
+            maxLeft,
+            maxBottom,
             resizeHandle: handle
         };
         setInteraction("resize");
@@ -144,7 +178,9 @@ const RecordingHUD = ({ mode, videoRef, streamRef, onStop, elapsed }: RecordingH
     });
 
     return (
-    <div style={{
+    <div 
+        ref={hudRef}
+        style={{
         position: "absolute", 
         bottom: pos.y, 
         left: pos.x, 
