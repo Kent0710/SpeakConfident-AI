@@ -15,14 +15,14 @@ export default async function saveAnalysis(result: AnalysisResultType) {
         }
 
         // The database schema uses flattened columns for the arrays of metrics,
-        // so we'll serialize the text arrays to JSON strings and average the scores.
+        // so we'll serialize the text arrays to JSON strings.
         const audioScore = result.metrics.length > 0 
-            ? Math.round(result.metrics.reduce((acc, m) => acc + m.score, 0) / result.metrics.length) 
+            ? JSON.stringify(result.metrics.map(m => m.score)) 
             : null;
             
         const visualMetrics = result.visualAnalysis?.metrics || [];
         const visualScore = visualMetrics.length > 0
-            ? Math.round(visualMetrics.reduce((acc, m) => acc + m.score, 0) / visualMetrics.length)
+            ? JSON.stringify(visualMetrics.map(m => m.score))
             : null;
 
         const { data, error } = await supabase.from('analysis').insert({

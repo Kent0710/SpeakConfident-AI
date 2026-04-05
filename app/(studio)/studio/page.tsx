@@ -26,6 +26,7 @@ import CountdownOverlay from "@/components/studio/countdown-overlay";
 import RecordingHUD from "@/components/studio/recording-hud";
 import ModeSelect from "@/components/studio/mode-select";
 import Room from "@/components/studio/room";
+import saveAnalysis from "@/actions/analysis/save-analysis";
 
 // Types
 
@@ -186,7 +187,15 @@ const RecordPresentationPage = () => {
 
             const result = (await response.json()) as AnalysisResultType;
             setAnalysisResult(result);
-            router.push("/analysis/123");
+
+            const res = await saveAnalysis(result);
+
+            if (res.ok) {
+                router.push(`/analysis/${res.id}`);
+                return;
+            } else {
+                toast.error(res.error);
+            }
         } catch (err: unknown) {
             console.error("[RecordPage] submit error:", err);
             toast.error(

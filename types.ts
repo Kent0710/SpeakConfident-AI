@@ -18,6 +18,7 @@ export interface VisualMetricType {
 }
 
 export interface AnalysisResultType {
+  id: string;
   overallScore: number;
   summary: string;
   metrics: MetricType[];

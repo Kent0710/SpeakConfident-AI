@@ -1,3 +1,4 @@
+import getAnalysisById from "@/actions/analysis/get-analysis-by-id";
 import AnalysisBoard from "@/components/analysis/analysis-board";
 import PageWrapper from "@/components/reusables/wrappers";
 
@@ -8,14 +9,14 @@ interface AnalysisPageProps {
 }
 const AnalysisPage: React.FC<AnalysisPageProps> = async ({ params }) => {
     const { analysisId } = await params;
-
+    const { data } = await getAnalysisById(analysisId);
+    
     return (
         <PageWrapper
             title="Analysis Result"
             description="Lorem ipsum dolor sit amet consectetur, adipisicing elit."
         >
-            <h1>Analysis Result for ID: {analysisId}</h1>
-            <AnalysisBoard />
+            <AnalysisBoard data={data!} />
         </PageWrapper>
     );
 };
