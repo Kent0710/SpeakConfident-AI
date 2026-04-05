@@ -298,7 +298,7 @@ const TestPage = () => {
                 test / cinema-chair.glb — 5 seats
             </p>
 
-            <div className="w-full max-w-6xl h-[600px] rounded-2xl overflow-hidden border border-neutral-800 relative shadow-2xl">
+            <div className="w-full  h-full rounded-2xl overflow-hidden border border-neutral-800 relative shadow-2xl">
                 {/* Curtain rod on top */}
                 <CurtainRod />
 
