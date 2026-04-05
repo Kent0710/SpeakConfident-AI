@@ -8,7 +8,7 @@ import React, {
     useCallback,
 } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Environment, ContactShadows } from "@react-three/drei";
+import { ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
 import { useRecorder } from "@/hooks/use-recorder";
 import { useFileStore } from "@/store/use-current-file";
@@ -25,6 +25,7 @@ import CurtainRod from "@/components/studio/curtain-rod";
 import CountdownOverlay from "@/components/studio/countdown-overlay";
 import RecordingHUD from "@/components/studio/recording-hud";
 import ModeSelect from "@/components/studio/mode-select";
+import Room from "@/components/studio/room";
 
 // Types
 
@@ -311,34 +312,37 @@ const RecordPresentationPage = () => {
                         outputColorSpace: THREE.SRGBColorSpace,
                     }}
                 >
-                    <ambientLight intensity={0.6} />
+                    {/* Theater-style atmospheric lighting */}
+                    <ambientLight intensity={0.4} />
+                    
+                    {/* Front screen glow */ }
                     <directionalLight
-                        position={[5, 10, 5]}
-                        intensity={1.5}
+                        position={[0, 20, 30]}
+                        intensity={5.5}
+                        color="#e2e8f0"
                         castShadow
                         shadow-mapSize={[2048, 2048]}
                     />
-                    <pointLight
-                        position={[-6, 5, -4]}
-                        intensity={0.8}
-                        color="#a78bfa"
-                    />
-                    <pointLight
-                        position={[6, 5, -4]}
-                        intensity={0.8}
-                        color="#60a5fa"
-                    />
+                    
+                    {/* Overhead dramatic lights illuminating the seating area */}
+                    <pointLight position={[0, 30, -10]} intensity={500} color="#ffffff" distance={200} decay={1.5} />
+
+                    {/* Side atmospheric lights */}
+                    <pointLight position={[-15, 15, -10]} intensity={300} color="#ef4444" distance={100} decay={1.5} />
+                    <pointLight position={[15, 15, -10]} intensity={300} color="#ef4444" distance={100} decay={1.5} />
 
                     <Suspense fallback={<Loader />}>
+                       
+
+                        <Room />
                         <ChairRows onReady={handleSceneReady} />
                         {rowBox && <CameraRig box={rowBox} />}
                         <ContactShadows
                             position={[0, -0.01, 0]}
-                            opacity={0.5}
-                            scale={30}
-                            blur={2}
+                            opacity={0.8}
+                            scale={40}
+                            blur={2.5}
                         />
-                        <Environment preset="lobby" />
                     </Suspense>
                 </Canvas>
             </div>
