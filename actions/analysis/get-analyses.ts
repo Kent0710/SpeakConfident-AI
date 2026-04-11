@@ -62,7 +62,9 @@ export default async function getAnalyses() {
                 metrics,
                 strengths: row.strengths || [],
                 improvements: row.improvements || [],
-                transcriptionSnippet: row.transcriptionSnippet || ""
+                transcriptionSnippet: row.transcriptionSnippet || "",
+                recording_url: row.recording_url || undefined,
+                timestampFeedback: row.timestamp_feedback ? JSON.parse(row.timestamp_feedback) : undefined,
             };
 
             if (visualAnalysis) {

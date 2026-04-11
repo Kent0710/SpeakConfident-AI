@@ -156,7 +156,7 @@ const AnalysisBoard: React.FC<AnalysisBoardProps> = ({ data }) => {
                     )}
                 </div>
 
-                {/* Detailed Feedback Breakdown */}
+                {/* Details Breakdown Sections */}
                 <div className="border bg-card p-6 rounded-2xl shadow-sm">
                     <h3 className="text-lg font-semibold mb-6">Detailed Feedback</h3>
                     
@@ -208,6 +208,22 @@ const AnalysisBoard: React.FC<AnalysisBoardProps> = ({ data }) => {
                                             <p className="text-sm text-foreground/80 leading-relaxed pt-1 sm:border-l sm:pl-4 border-muted-foreground/20">
                                                 {metric.feedback}
                                             </p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                        
+                        {analysisResult.timestampFeedback && analysisResult.timestampFeedback.length > 0 && (
+                            <div>
+                                <h4 className="text-sm font-medium mb-4 mt-8 text-muted-foreground uppercase tracking-wide border-b pb-2">Timestamp Analysis</h4>
+                                <div className="grid grid-cols-1 gap-4">
+                                    {analysisResult.timestampFeedback.map((t, idx) => (
+                                        <div key={idx} className="bg-muted/40 p-4 rounded-xl flex gap-4 items-start">
+                                            <div className="font-mono text-sm px-3 py-1 bg-primary/10 text-primary rounded-md h-fit whitespace-nowrap font-semibold">
+                                                {t.timestamp}
+                                            </div>
+                                            <p className="text-sm text-foreground/80 leading-relaxed pt-0.5">{t.feedback}</p>
                                         </div>
                                     ))}
                                 </div>

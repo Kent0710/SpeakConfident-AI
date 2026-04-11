@@ -65,6 +65,7 @@ export default async function getAnalysisById(analysisId: string) {
             improvements: row.improvements || [],
             transcriptionSnippet: row.transcriptionSnippet || "",
             recording_url: row.recording_url || undefined,
+            timestampFeedback: row.timestamp_feedback ? JSON.parse(row.timestamp_feedback) : undefined,
         };
 
         if (visualAnalysis) {

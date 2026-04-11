@@ -87,6 +87,18 @@ export const analyzePresentation = async (
             type: Type.ARRAY,
             items: { type: Type.STRING },
         },
+        timestampFeedback: {
+            type: Type.ARRAY,
+            items: {
+                type: Type.OBJECT,
+                properties: {
+                    timestamp: { type: Type.STRING, description: "The time range or specific time in the video (e.g., '0:15 - 0:25' or '1:10')." },
+                    feedback: { type: Type.STRING, description: "Specific advice or observation at that timestamp." },
+                },
+                required: ["timestamp", "feedback"],
+            },
+            description: "A list of specific feedback tied to particular timestamps in the media.",
+        },
     };
 
     const requiredFields = [
@@ -96,6 +108,7 @@ export const analyzePresentation = async (
         "strengths",
         "improvements",
         "transcriptionSnippet",
+        "timestampFeedback",
     ];
 
     if (isVideo) {
