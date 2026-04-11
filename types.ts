@@ -17,6 +17,11 @@ export interface VisualMetricType {
   feedback: string;
 }
 
+export interface TimestampFeedbackType {
+  timestamp: string; // e.g., "0:15 - 0:25" or "0:15"
+  feedback: string;
+}
+
 export interface AnalysisResultType {
   id: string;
   overallScore: number;
@@ -30,4 +35,5 @@ export interface AnalysisResultType {
   improvements: string[];
   transcriptionSnippet: string;
   recording_url?: string;
+  timestampFeedback?: TimestampFeedbackType[];
 }

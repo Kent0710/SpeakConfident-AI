@@ -26,6 +26,8 @@ export type Database = {
           strengths: string[] | null
           summary: string | null
           transcriptionSnippet: string | null
+          timestamp_feedback: string | null
+          timestamp_feedback: string | null
           user_id: string | null
           visual_feedback: string | null
           visual_general_feedback: string | null
@@ -43,6 +45,7 @@ export type Database = {
           strengths?: string[] | null
           summary?: string | null
           transcriptionSnippet?: string | null
+          timestamp_feedback?: string | null
           user_id?: string | null
           visual_feedback?: string | null
           visual_general_feedback?: string | null
@@ -60,6 +63,7 @@ export type Database = {
           strengths?: string[] | null
           summary?: string | null
           transcriptionSnippet?: string | null
+          timestamp_feedback?: string | null
           user_id?: string | null
           visual_feedback?: string | null
           visual_general_feedback?: string | null
