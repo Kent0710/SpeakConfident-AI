@@ -63,7 +63,8 @@ export default async function getAnalysisById(analysisId: string) {
             metrics,
             strengths: row.strengths || [],
             improvements: row.improvements || [],
-            transcriptionSnippet: row.transcriptionSnippet || ""
+            transcriptionSnippet: row.transcriptionSnippet || "",
+            recording_url: row.recording_url || undefined,
         };
 
         if (visualAnalysis) {

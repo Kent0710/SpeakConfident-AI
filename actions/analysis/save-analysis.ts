@@ -38,6 +38,7 @@ export default async function saveAnalysis(result: AnalysisResultType) {
             strengths: result.strengths,
             improvements: result.improvements,
             transcriptionSnippet: result.transcriptionSnippet,
+            recording_url: result.recording_url || null,
             user_id: user.id
         }) .select('id').single();
 
