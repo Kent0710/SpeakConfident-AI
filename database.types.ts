@@ -22,6 +22,7 @@ export type Database = {
           id: string
           improvements: string[] | null
           overallScore: number
+          recording_url: string | null
           strengths: string[] | null
           summary: string | null
           transcriptionSnippet: string | null
@@ -38,6 +39,7 @@ export type Database = {
           id?: string
           improvements?: string[] | null
           overallScore?: number
+          recording_url?: string | null
           strengths?: string[] | null
           summary?: string | null
           transcriptionSnippet?: string | null
@@ -54,6 +56,7 @@ export type Database = {
           id?: string
           improvements?: string[] | null
           overallScore?: number
+          recording_url?: string | null
           strengths?: string[] | null
           summary?: string | null
           transcriptionSnippet?: string | null

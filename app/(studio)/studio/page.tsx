@@ -16,6 +16,7 @@ import { useAnalysisResultStore } from "@/store/use-analysis-result";
 import { AnalysisResultType } from "@/types";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { createClient } from "@/lib/supabase/client";
 
 import PreviewOverlay from "@/components/studio/preview-overlay";
 import CameraRig from "@/components/studio/camera-rig";
@@ -186,6 +187,23 @@ const RecordPresentationPage = () => {
             }
 
             const result = (await response.json()) as AnalysisResultType;
+            
+            // Upload to Supabase Storage
+            const supabase = createClient();
+            const { error: uploadError } = await supabase.storage
+                .from("recordings")
+                .upload(filename, file);
+
+            if (uploadError) {
+                console.error("Supabase upload error:", uploadError);
+                toast.error("Failed to upload recording, but analysis was completed.");
+            } else {
+                const { data: { publicUrl } } = supabase.storage
+                    .from("recordings")
+                    .getPublicUrl(filename);
+                result.recording_url = publicUrl;
+            }
+
             setAnalysisResult(result);
 
             const res = await saveAnalysis(result);

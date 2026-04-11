@@ -62,6 +62,24 @@ const AnalysisBoard: React.FC<AnalysisBoardProps> = ({ data }) => {
             {/* Left Result - Dashboard Scrollable Area */}
             <section className="flex-[2] flex flex-col gap-6 overflow-y-auto pr-2 pb-6 min-h-0">
                 
+                {/* Recording Player */}
+                {analysisResult.recording_url ? (
+                    <div className="border bg-card p-6 rounded-2xl shadow-sm flex flex-col">
+                        <h2 className="text-sm font-medium mb-2 text-muted-foreground uppercase tracking-wide">Recording</h2>
+                        <div className="w-full rounded-xl overflow-hidden bg-black flex justify-center">
+                            <video 
+                                src={analysisResult.recording_url} 
+                                controls 
+                                className="w-full max-h-[400px] object-contain"
+                            />
+                        </div>
+                    </div>
+                ): (
+                    <div
+                        onClick={()=>console.log(data)}
+                    >no recording</div>
+                )}
+
                 {/* Header overview */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="col-span-1 flex flex-col items-center justify-center border bg-card p-6 rounded-2xl shadow-sm text-center">

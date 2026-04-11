@@ -29,4 +29,5 @@ export interface AnalysisResultType {
   strengths: string[];
   improvements: string[];
   transcriptionSnippet: string;
+  recording_url?: string;
 }
