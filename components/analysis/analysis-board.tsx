@@ -3,6 +3,7 @@
 import { useAnalysisResultStore } from "@/store/use-analysis-result";
 import { AnalysisResultType } from "@/types";
 import React, { useEffect } from "react";
+import ChatCoach from "./chat-coach";
 import { 
     RadarChart,
     PolarGrid,
@@ -209,11 +210,8 @@ const AnalysisBoard: React.FC<AnalysisBoardProps> = ({ data }) => {
             </section>
 
             {/* Right Chat Column */}
-            <section className="flex-1 min-w-[300px] border bg-card rounded-2xl shadow-sm p-4 flex flex-col">
-                <div className="h-full flex items-center justify-center text-muted-foreground flex-col gap-2">
-                    <span className="font-medium text-lg">AI Coach Chat</span>
-                    <span className="text-sm opacity-60">Coming soon...</span>
-                </div>
+            <section className="flex-1 min-w-[300px] border-none shadow-none p-0 flex flex-col h-full">
+                <ChatCoach data={analysisResult} />
             </section>
         </div>
     );
