@@ -8,14 +8,14 @@ const HomePage = () => {
     return (
         <PageWrapper
             title="Home"
-            description="Lorem ipsum dolor sit amet consectetur, adipisicing elit."
+            description="Your dashboard for all your presentation analyses. "
         >
             <Link href={"/upload"}>
-                <Button>Upload</Button>
+                <Button className="px-4 mr-2">Upload</Button>
             </Link>
 
             <Link href={`/record`}>
-                <Button>Record</Button>
+                <Button className="px-4">Record</Button>
             </Link>
 
             <Suspense fallback={<div>Loading analyses...</div>}>
