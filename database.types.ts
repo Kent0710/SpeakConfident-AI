@@ -19,8 +19,10 @@ export type Database = {
           audio_feedback: string | null
           audio_metric_category: string | null
           audio_score: string | null
+          description: string | null
           id: string
           improvements: string[] | null
+          name: string | null
           overallScore: number
           recording_url: string | null
           strengths: string[] | null
@@ -37,8 +39,10 @@ export type Database = {
           audio_feedback?: string | null
           audio_metric_category?: string | null
           audio_score?: string | null
+          description?: string | null
           id?: string
           improvements?: string[] | null
+          name?: string | null
           overallScore?: number
           recording_url?: string | null
           strengths?: string[] | null
@@ -53,8 +57,10 @@ export type Database = {
         }
         Update: {
           audio_feedback?: string | null
-          audio_metric_category?: string | null
-          audio_score?: string | null
+          description?: string | null
+          id?: string
+          improvements?: string[] | null
+          name?: stringnull
           id?: string
           improvements?: string[] | null
           overallScore?: number
