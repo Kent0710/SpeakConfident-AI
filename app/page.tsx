@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import React from "react";
 
 import STUDIOPREVIEWIMAGE from "@/public/images/studio-mode-preview.png";
 import AICOACHCHATIMAGE from "@/public/images/ai-coach-chat-preview.png";
@@ -14,15 +13,15 @@ import { Badge } from "@/components/ui/badge";
 const LandingPage = () => {
     return (
         <div className="flex flex-col ">
-            <header className="h-[5rem] flex justify-between items-center px-10">
+            <header className="py-4 md:h-[5rem] flex flex-col md:flex-row justify-between items-center px-4 md:px-10 gap-4 md:gap-0">
                 {/* Left Side  */}
                 <div>
-                    <p className="font-semibold">SpeakConfident AI</p>
+                    <p className="font-semibold text-center md:text-left">SpeakConfident AI</p>
                 </div>
                 {/* Right Side  */}
                 <div>
                     <nav>
-                        <ul className="flex items-center gap-2">
+                        <ul className="flex flex-wrap justify-center items-center gap-2">
                             <li>
                                 <Link href={`#`}>
                                     <Button variant={"ghost"}>
@@ -52,15 +51,15 @@ const LandingPage = () => {
             <div className="flex flex-col h-[70dvh] items-center justify-center">
                 {/* left section  */}
                     <h1
-                        className="text-7xl text-center md:text-8xl font-extrabold tracking-tight 
-                    bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent mb-6 max-w-4xl "
+                        className="text-5xl text-center md:text-7xl lg:text-8xl font-extrabold tracking-tight 
+                    bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent mb-6 max-w-4xl px-4"
                     >
                         Sound confident <br className="hidden md:block" />
                         <span className="bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent">
                             before it matters.
                         </span>
                     </h1>
-                    <p className="text-2xl text-center text-neutral-500 mb-10 max-w-4xl">
+                    <p className="text-lg md:text-2xl text-center text-neutral-500 mb-10 max-w-4xl px-4">
                         Upload your practice presentation audio or video. Get
                         instant, actionable feedback on pacing, tone, and filler
                         words from our advanced AI.
@@ -76,30 +75,30 @@ const LandingPage = () => {
 
             {/* ai coach chat section  */}
             <div
-                className="flex items-center justify-center mt-[10rem] px-4
-                bg-gradient-to-r from-fuchsia-600 to-pink-600 py-10
+                className="flex flex-col-reverse lg:flex-row items-center justify-center mt-[6rem] md:mt-[10rem] px-4
+                bg-gradient-to-r from-fuchsia-600 to-pink-600 py-10 md:py-16 
             "
             >
                 {/* left section: the ai chat image */}
-                <section className="flex justify-center items-center w-1/2">
+                <section className="flex justify-center items-center w-full lg:w-1/2">
                     <Image
                         src={AICOACHCHATIMAGE}
                         alt="AI Coach Chat Preview"
-                        className="w-[70%] rounded-lg shadow-lg object-cover -rotate-3"
+                        className="w-[90%] md:w-[70%] rounded-lg shadow-lg object-cover -rotate-3"
                     />
                 </section>
 
                 {/* right section: the text */}
-                <section className="w-1/2">
+                <section className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
                     <Badge className=" text-base p-3 mb-4">New Feature!</Badge>
                     <p
                         className="
-                          text-6xl font-bold mb-2 text-white
+                          text-4xl md:text-6xl font-bold mb-4 text-white
                         "
                     >
-                        AI Chat <br /> Presentation Coach
+                        AI Chat <br className="hidden md:block" /> Presentation Coach
                     </p>
-                    <p className="text-base text-neutral-200 mb-10 max-w-xl">
+                    <p className="text-base text-neutral-200 mb-10 max-w-xl px-4 lg:px-0">
                         Ask questions, get tips, and receive tailored advice to
                         improve your presentation skills both in general and for
                         each specific analysis.
@@ -107,43 +106,43 @@ const LandingPage = () => {
                 </section>
             </div>
 
-            <div className="flex items-center justify-center px-4
-                bg-gradient-to-r from-fuchsia-600 to-pink-600 py-10 pb-12
+            <div className="flex flex-col lg:flex-row items-center justify-center px-4
+                bg-gradient-to-r from-fuchsia-600 to-pink-600 py-10 md:py-16 pb-12
             
             ">
-                {/* left section: the ai chat image */}
-                <section className="w-1/2 pl-14">
+                {/* left section: the text */}
+                <section className="w-full lg:w-1/2 lg:pl-14 flex flex-col items-center lg:items-start text-center lg:text-left">
                     <Badge className=" text-base p-3 mb-4">New Feature!</Badge>
                     <p
                         className="
-                          text-6xl font-bold 
-                          text-white mb-2
+                          text-4xl md:text-6xl font-bold 
+                          text-white mb-4
                         "
                     >
-                        Live Studio <br /> Recording Mode
+                        Live Studio <br className="hidden md:block" /> Recording Mode
                     </p>
-                    <p className="text-base text-neutral-200 mb-10 max-w-xl">
+                    <p className="text-base text-neutral-200 mb-10 max-w-xl px-4 lg:px-0">
                         Record your presentation directly on our platform with
                         our new Studio Mode to visualize yourself in front of a
                         virtual audience.
                     </p>
                 </section>
 
-                {/* right section: the text */}
-                <section className="flex justify-center items-center w-1/2">
+                {/* right section: the image */}
+                <section className="flex justify-center items-center w-full lg:w-1/2">
                     <Image
                         src={STUDIOPREVIEWIMAGE}
                         alt="Studio Mode Preview"
-                        className="w-full max-w-2xl rounded-lg shadow-lg object-cover rotate-3"
+                        className="w-[95%] md:w-full max-w-2xl rounded-lg shadow-lg object-cover rotate-3"
                     />
                 </section>
             </div>
 
             {/* strength and improvement  */}
-            <div className="flex flex-col items-center mt-[10rem] px-4">
+            <div className="flex flex-col items-center mt-[6rem] md:mt-[10rem] px-4">
                 <p
-                    className="text-6xl font-extrabold tracking-tight 
-                    bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent mb-2  max-w-4xl text-center"
+                    className="text-4xl md:text-6xl font-extrabold tracking-tight 
+                    bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent mb-4 max-w-4xl text-center"
                 >
                     See How You Really Present.
                 </p>
@@ -154,44 +153,44 @@ const LandingPage = () => {
                 <Image
                     src={SUMMARYIMAGE}
                     alt="Summary of Strengths and Improvements"
-                    className="w-[60%] rounded-lg shadow-lg object-cover border"
+                    className="w-[90%] md:w-[80%] lg:w-[60%] rounded-lg shadow-lg object-cover border"
                 />
             </div>
 
-            <div className="flex  items-center justify-center mt-[10rem] px-4">
+            <div className="flex flex-col lg:flex-row items-center justify-center mt-[6rem] md:mt-[10rem] px-4 gap-10 lg:gap-0">
                 {/* public\video-sample-analysis.png */}
-                <div className="flex flex-col  justify-center w-[50%] pl-10">
+                <div className="flex flex-col text-center lg:text-left items-center lg:items-start justify-center w-full lg:w-[50%] lg:pl-10">
                     <p
                         className="
-                    text-6xl font-bold 
-                    bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent mb-2
+                    text-4xl md:text-6xl font-bold 
+                    bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent mb-4
                     "
                     >
                     Detailed analysis on every aspect.
                     </p>
-                    <p className="text-base text-neutral-500 mb-10">
+                    <p className="text-base text-neutral-500 mb-10 max-w-xl">
                         Get in-depth feedback on your audio and video on every
                         aspect of your presentation.
                     </p>
                 </div>
-                <div className="flex items-center  w-[50%] pr-10">
+                <div className="flex flex-col md:flex-row items-center justify-center w-full lg:w-[50%] lg:pr-10 gap-4 md:gap-2">
                     <Image
                         src={DETAILEDAUDIOIMAGE}
                         alt="Detailed Audio Analysis Sample"
-                        className="w-[50%] rounded-lg shadow-lg object-cover mr-4 border"
+                        className="w-[90%] md:w-[48%] rounded-lg shadow-lg object-cover border"
                     />
                     <Image
                         src={DETAILVIDEOIMAGE}
                         alt="Detailed Video Analysis Sample"
-                        className="w-[50%] rounded-lg shadow-lg object-cover ml-4 border"
+                        className="w-[90%] md:w-[48%] rounded-lg shadow-lg object-cover border"
                     />
                 </div>
             </div>
 
-            <div className="flex flex-col mt-[10rem] items-center justify-center px-4 mb-[10rem]">
+            <div className="flex flex-col mt-[6rem] md:mt-[10rem] items-center justify-center px-4 mb-[6rem] md:mb-[10rem]">
                 <p
-                    className="text-6xl font-extrabold tracking-tight 
-                    bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent mb-2 max-w-4xl text-center"
+                    className="text-4xl md:text-6xl font-extrabold tracking-tight 
+                    bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent mb-4 max-w-4xl text-center"
                 >
                     Your file recording is ready?
                 </p>
