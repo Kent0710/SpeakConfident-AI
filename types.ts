@@ -24,6 +24,8 @@ export interface TimestampFeedbackType {
 
 export interface AnalysisResultType {
   id: string;
+  name?: string;
+  description?: string;
   overallScore: number;
   summary: string;
   metrics: MetricType[];

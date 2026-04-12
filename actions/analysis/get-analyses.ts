@@ -57,6 +57,8 @@ export default async function getAnalyses() {
 
             const result: AnalysisResultType = {
                 id: row.id,
+                name: row.name || undefined,
+                description: row.description || undefined,
                 overallScore: row.overallScore || 0,
                 summary: row.summary || "",
                 metrics,

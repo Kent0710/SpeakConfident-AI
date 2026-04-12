@@ -58,6 +58,8 @@ export default async function getAnalysisById(analysisId: string) {
 
         const result: AnalysisResultType = {
             id: row.id,
+            name: row.name || undefined,
+            description: row.description || undefined,
             overallScore: row.overallScore || 0,
             summary: row.summary || "",
             metrics,
