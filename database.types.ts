@@ -60,9 +60,7 @@ export type Database = {
           description?: string | null
           id?: string
           improvements?: string[] | null
-          name?: stringnull
-          id?: string
-          improvements?: string[] | null
+          name?: string | null
           overallScore?: number
           recording_url?: string | null
           strengths?: string[] | null
