@@ -34,11 +34,23 @@ const AnalysisDashboardCard: React.FC<AnalysisDashboardCardProps> = ({
             <div className="p-5 flex flex-col flex-1 justify-between">
                 <div>
                     <div className="flex justify-between items-start mb-4">
-                        <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
-                            Overall Score
-                        </h3>
-                        <div className="text-3xl font-bold tracking-tighter text-primary">
-                            {analysis.overallScore}
+                        <div className="flex flex-col flex-1 mr-4">
+                            <h2 className="text-lg font-bold tracking-tight text-foreground line-clamp-1">
+                                {analysis.name || "Untitled Analysis"}
+                            </h2>
+                            {analysis.description && (
+                                <p className="text-sm text-muted-foreground line-clamp-1 mt-1">
+                                    {analysis.description}
+                                </p>
+                            )}
+                        </div>
+                        <div className="flex flex-col items-end">
+                            <div className="text-3xl font-bold tracking-tighter text-primary leading-none">
+                                {analysis.overallScore}
+                            </div>
+                            <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mt-1">
+                                Score
+                            </span>
                         </div>
                     </div>
                     
