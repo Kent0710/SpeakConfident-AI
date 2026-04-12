@@ -14,10 +14,21 @@ const AnalysisDashboardCard: React.FC<AnalysisDashboardCardProps> = ({
             href={`/analysis/${analysis.id}`}
             className="group flex flex-col overflow-hidden border bg-card rounded-2xl shadow-sm hover:shadow-md transition-all flex-1 cursor-pointer hover:border-primary/50"
         >
-            {/* Video Placeholder */}
-            <div className="w-full h-40 bg-muted/50 flex flex-col items-center justify-center border-b group-hover:bg-muted/70 transition-colors">
-                <Video className="text-muted-foreground/60" />
-                <span className="text-xs font-medium text-muted-foreground/60 tracking-wider uppercase">Video Preview</span>
+            {/* Video Preview */}
+            <div className="w-full h-40 bg-muted/50 flex overflow-hidden flex-col items-center text-center justify-center border-b group-hover:bg-muted/70 transition-colors">
+                {analysis.recording_url ? (
+                    <video 
+                        src={analysis.recording_url} 
+                        className="w-full h-full object-cover"
+                        muted
+                        playsInline
+                    />
+                ) : (
+                    <>
+                        <Video className="text-muted-foreground/60 mb-2" />
+                        <span className="text-xs font-medium text-muted-foreground/60 tracking-wider uppercase">Video Preview</span>
+                    </>
+                )}
             </div>
 
             <div className="p-5 flex flex-col flex-1 justify-between">
