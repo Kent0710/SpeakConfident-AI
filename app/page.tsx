@@ -16,7 +16,9 @@ const LandingPage = () => {
             <header className="py-4 md:h-[5rem] flex flex-col md:flex-row justify-between items-center px-4 md:px-10 gap-4 md:gap-0">
                 {/* Left Side  */}
                 <div>
-                    <p className="font-semibold text-center md:text-left">SpeakConfident AI</p>
+                    <p className="font-semibold text-center md:text-left">
+                        SpeakConfident AI
+                    </p>
                 </div>
                 {/* Right Side  */}
                 <div>
@@ -50,25 +52,26 @@ const LandingPage = () => {
             {/* hero section */}
             <div className="flex flex-col h-[70dvh] items-center justify-center">
                 {/* left section  */}
-                    <h1
-                        className="text-5xl text-center md:text-7xl lg:text-8xl font-extrabold tracking-tight 
+                <h1
+                    className="text-5xl text-center md:text-7xl lg:text-8xl font-extrabold tracking-tight 
                     bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent mb-6 max-w-4xl px-4"
-                    >
-                        Sound confident <br className="hidden md:block" />
-                        <span className="bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent">
-                            before it matters.
-                        </span>
-                    </h1>
-                    <p className="text-lg md:text-2xl text-center text-neutral-500 mb-10 max-w-4xl px-4">
-                        Upload your practice presentation audio or video. Get
-                        instant, actionable feedback on pacing, tone, and filler
-                        words from our advanced AI.
-                    </p>
+                >
+                    Sound confident <br className="hidden md:block" />
+                    <span className="bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent">
+                        before it matters.
+                    </span>
+                </h1>
+                <p className="text-lg md:text-2xl text-center text-neutral-500 mb-10 max-w-4xl px-4">
+                    Upload your practice presentation audio or video. Get
+                    instant, actionable feedback on pacing, tone, and filler
+                    words from our advanced AI.
+                </p>
 
-                    <Link href={"/home"}>
-                        <Button>Start Analysis</Button>
-                    </Link>
-               
+                <Link href={"/home"}>
+                    <Button className="bg-gradient-to-r from-fuchsia-600 to-pink-600" size={'lg'}>
+                        Start Analysis
+                    </Button>
+                </Link>
             </div>
 
             <AnalysisMarquee />
@@ -96,7 +99,8 @@ const LandingPage = () => {
                           text-4xl md:text-6xl font-bold mb-4 text-white
                         "
                     >
-                        AI Chat <br className="hidden md:block" /> Presentation Coach
+                        AI Chat <br className="hidden md:block" /> Presentation
+                        Coach
                     </p>
                     <p className="text-base text-neutral-200 mb-10 max-w-xl px-4 lg:px-0">
                         Ask questions, get tips, and receive tailored advice to
@@ -106,10 +110,12 @@ const LandingPage = () => {
                 </section>
             </div>
 
-            <div className="flex flex-col lg:flex-row items-center justify-center px-4
+            <div
+                className="flex flex-col lg:flex-row items-center justify-center px-4
                 bg-gradient-to-r from-fuchsia-600 to-pink-600 py-10 md:py-16 pb-12
             
-            ">
+            "
+            >
                 {/* left section: the text */}
                 <section className="w-full lg:w-1/2 lg:pl-14 flex flex-col items-center lg:items-start text-center lg:text-left">
                     <Badge className=" text-base p-3 mb-4">New Feature!</Badge>
@@ -119,7 +125,8 @@ const LandingPage = () => {
                           text-white mb-4
                         "
                     >
-                        Live Studio <br className="hidden md:block" /> Recording Mode
+                        Live Studio <br className="hidden md:block" /> Recording
+                        Mode
                     </p>
                     <p className="text-base text-neutral-200 mb-10 max-w-xl px-4 lg:px-0">
                         Record your presentation directly on our platform with
@@ -166,7 +173,7 @@ const LandingPage = () => {
                     bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent mb-4
                     "
                     >
-                    Detailed analysis on every aspect.
+                        Detailed analysis on every aspect.
                     </p>
                     <p className="text-base text-neutral-500 mb-10 max-w-xl">
                         Get in-depth feedback on your audio and video on every
@@ -198,7 +205,9 @@ const LandingPage = () => {
                     Upload your practice presentation audio or video now!
                 </p>
                 <Link href={"/home"}>
-                    <Button>Start Analysis</Button>
+                    <Button className="bg-gradient-to-r from-fuchsia-600 to-pink-600" size={'lg'}>
+                        Start Analysis
+                    </Button>
                 </Link>
             </div>
         </div>
@@ -291,4 +300,4 @@ const AnalysisMarquee = () => {
     );
 };
 
-export default LandingPage ;
+export default LandingPage;
